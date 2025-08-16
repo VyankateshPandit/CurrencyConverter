@@ -1,0 +1,4 @@
+arrow color - #808792
+btn bg - #3a3e70
+text color - #b6b7b8
+heading  color - #cacbca
