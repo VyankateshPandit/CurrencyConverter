@@ -41,7 +41,7 @@ function App() {
             <DropDownInputs
               currencyOption={options}
               onCurrencyChange={(amount) => {
-                setAmount(amount);
+                setFrom(amount);
               }}
               selectCurrency={from}
             />
