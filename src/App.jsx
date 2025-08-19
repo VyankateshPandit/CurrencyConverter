@@ -5,22 +5,22 @@ import { InputFields, DropDownInputs } from "./components";
 
 function App() {
   const [amount, setAmount] = useState(0);
+  const [convertedAmount, setConvertedAmount] = useState(0);
   const [from, setFrom] = useState("usd");
   const [to, setTo] = useState("inr");
-  const [convertedAmount, setConvertedAmount] = useState(0);
-  const currencyInfo = useCurrencyInfo(from);
 
-  const options = Object.keys(currencyInfo);
+  const CurrencyData = useCurrencyInfo(from);
+  const CurrencyOptions = Object.keys(CurrencyData);
 
   const SwapCurrency = () => {
     setFrom(to);
     setTo(from);
-    setConvertedAmount(amount);
     setAmount(convertedAmount);
+    setConvertedAmount(amount);
   };
 
-  const Converter = () => {
-    setConvertedAmount(amount * currencyInfo[to]);
+  const ConvertCurrency = () => {
+    setConvertedAmount(amount * CurrencyData[to]);
   };
 
   return (
@@ -39,11 +39,9 @@ function App() {
 
           <div className="flex flex-row w-full items-center justify-evenly gap-4 my-4">
             <DropDownInputs
-              currencyOption={options}
-              onCurrencyChange={(amount) => {
-                setFrom(amount);
-              }}
+              options={CurrencyOptions}
               selectCurrency={from}
+              onCurrencyChange={setFrom}
             />
             <ArrowLeftRight
               onClick={SwapCurrency}
@@ -61,11 +59,9 @@ function App() {
               "
             />
             <DropDownInputs
-              currencyOption={options}
-              onCurrencyChange={(currency) => {
-                setTo(currency);
-              }}
+              options={CurrencyOptions}
               selectCurrency={to}
+              onCurrencyChange={setTo}
             />
           </div>
 
@@ -76,7 +72,7 @@ function App() {
           />
 
           <button
-            onClick={Converter}
+            onClick={ConvertCurrency}
             className="mt-6 text-[#cacbca] w-full rounded-lg border border-black font-semibold shadow-md text-lg sm:text-xl md:text-2xl p-3 bg-[#3a3e70] hover:bg-[#30335c] transition-colors"
             type="submit"
           >

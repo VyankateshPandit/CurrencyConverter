@@ -1,15 +1,11 @@
 import React from "react";
 
-function DropDownInputs({
-  onCurrencyChange,
-  currencyOption = [],
-  selectCurrency = "usd",
-}) {
+function DropDownInputs({ options = [], selectCurrency, onCurrencyChange }) {
   return (
     <>
       <select
         value={selectCurrency}
-        onChange={(e) => onCurrencyChange && onCurrencyChange(e.target.value)}
+        onChange={(e) => onCurrencyChange(e.target.value)}
         className="
         bg-[#0f1415] 
         text-base sm:text-lg md:text-xl lg:text-2xl 
@@ -22,11 +18,9 @@ function DropDownInputs({
         focus:outline-none focus:ring-2 focus:ring-[#3a3e70]
       "
       >
-        {currencyOption.map((ele, id) => (
-          <option value={ele} key={id}>
-            {ele}
-          </option>
-        ))}
+        {options.map((ele, id) => {
+          return <option key={id}>{ele}</option>;
+        })}
       </select>
     </>
   );

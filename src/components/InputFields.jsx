@@ -12,9 +12,7 @@ function InputFields({ label, amount, onAmountChange }) {
       <input
         type="number"
         value={amount}
-        onChange={(e) =>
-          onAmountChange && onAmountChange(Number(e.target.value))
-        }
+        onChange={(e) => onAmountChange(Number(e.target.value))}
         className="
           w-full 
           focus:outline-none 
